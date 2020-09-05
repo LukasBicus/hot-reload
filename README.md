@@ -9,7 +9,16 @@ Run on every `package.json` change.
 
 ```
 npm install                                 ### to update package-lock.json
+```
+
+## Run development container
+```
 docker-compose up -d --build                ### to update node_modules
+```
+
+## Run production container
+```
+docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
 ## Tips

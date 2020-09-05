@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  hot-reload-prod:
+    container_name: hot-reload-prod
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+    - '1337:80'

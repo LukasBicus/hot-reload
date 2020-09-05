@@ -5,7 +5,7 @@ import './App.css';
 function Rect() {
   console.log('Rect rendered')
   return (
-    <div style={{ background: 'blue' }}>A rect with background</div>
+    <div style={{ background: 'red' }}>A rect with background</div>
   )
 }
 
