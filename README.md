@@ -1,3 +1,25 @@
+# Hot reload example
+
+## Set up
+Run `nvm use` to set the proper version of node and npm
+
+## Install
+
+Run on every `package.json` change.
+
+```
+npm install                                 ### to update package-lock.json
+docker-compose up -d --build                ### to update node_modules
+```
+
+## Tips
+
+To see, what's going on in the container, start container and connect to it with sh
+```
+docker exec -it hot-reload sh
+```
+
+# React scripts readme
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

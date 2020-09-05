@@ -2,7 +2,15 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+function Rect() {
+  console.log('Rect rendered')
+  return (
+    <div style={{ background: 'blue' }}>A rect with background</div>
+  )
+}
+
 function App() {
+  console.log('App rendered')
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +26,7 @@ function App() {
         >
           Learn React
         </a>
+        <Rect />
       </header>
     </div>
   );
