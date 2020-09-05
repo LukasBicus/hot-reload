@@ -1,32 +1,62 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import {
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+
 import logo from './logo.svg';
 import './App.css';
 
-function Rect() {
-  console.log('Rect rendered')
+function Rect ({ background = 'red' }) {
+  const dispatch = useDispatch()
+  const onClick = useCallback(() => {
+    dispatch({
+      type: 'INCREMENT'
+    })
+  }, [dispatch])
   return (
-    <div style={{ background: 'red' }}>A rect with background</div>
+    <div style={{ background }} onClick={onClick}>Click on me</div>
   )
 }
 
-function App() {
+function App () {
   console.log('App rendered')
+  const counter = useSelector(state => state.counter)
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Rect />
+        <ul style={{
+          width: '50%',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-around'
+        }}>
+          <li>
+            <Link to="/">Red</Link>
+          </li>
+          <li>
+            <Link to="/green">Green</Link>
+          </li>
+          <li>
+            <Link to="/blue">Blue</Link>
+          </li>
+        </ul>
+        <img src={logo} className="App-logo" alt="logo"/>
+
+        <Switch>
+          <Route path="/blue">
+            <Rect background="blue"/>
+          </Route>
+          <Route path="/green">
+            <Rect background="green"/>
+          </Route>
+          <Route path="/">
+            <Rect background="red"/>
+          </Route>
+        </Switch>
+        <div>Clicked count: {counter}</div>
       </header>
     </div>
   );

@@ -1,15 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from 'react-redux'
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import configureStore from './configureStore'
+
+const store = configureStore()
 
 const rootEl = document.getElementById('root')
 
-ReactDOM.render(
+const getWrappedApp = Component => (
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={store}>
+      <BrowserRouter>
+        <Component/>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+)
+
+ReactDOM.render(
+  getWrappedApp(App),
   rootEl
 );
 
@@ -17,9 +31,7 @@ if (module.hot) {
   module.hot.accept('./App', () => {
     const NextApp = require('./App').default
     ReactDOM.render(
-      <React.StrictMode>
-        <NextApp />
-      </React.StrictMode>,
+      getWrappedApp(NextApp),
       rootEl
     )
   })
